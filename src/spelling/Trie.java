@@ -13,16 +13,19 @@ import java.util.ArrayList;
  */
 public class Trie {
 
-    TrieNode root;
+    TrieNode root= new TrieNode();
 
     public class TrieNode {
+
+        public TrieNode() {
+        }
 
         public TrieNode(char leter) {
             this.leter = leter;
         }
 
         char leter;
-        ArrayList<TrieNode> childrens;
+        ArrayList<TrieNode> childrens = new ArrayList<>();
         boolean isEnd = false;
 
         TrieNode fCh(char a) {
@@ -57,12 +60,9 @@ public class Trie {
     
     boolean inclueds(char[] word){
         TrieNode current = root;
-        TrieNode exist;
-        int i = 0;
         for (char a : word) {
-            i++;
-            exist = current.fCh(a);
-            if (exist == null) {
+            current = current.fCh(a);
+            if (current == null) {
                 return false;
             }
         }

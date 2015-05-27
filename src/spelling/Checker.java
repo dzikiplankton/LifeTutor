@@ -13,11 +13,14 @@ import java.io.*;
  */
 public class Checker {
 
-    Trie trie;
+    Trie trie = new Trie();
+    
+
 
     boolean includes(char[] word) {
         return trie.inclueds(word);
     }
+    
 
     void read(String path) {
         FileReader fr;

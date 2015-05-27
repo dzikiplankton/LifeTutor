@@ -5,6 +5,7 @@
  */
 package generator;
 
+import generator.AvlTree.Node;
 import java.util.*;
 import java.io.*;
 
@@ -14,15 +15,15 @@ import java.io.*;
  */
 public class Library implements Serializable{
 
-    AVLnode root = new AVLnode();
-    AVLnode[] pointers;
+    AvlTree tree =new AvlTree();
+    Node[] pointers;
     Integer next_key = 0;
 
     void makePointers() {
-        pointers = new AVLnode[next_key];
+        pointers = new Node[next_key];
     }
 
-    void addPointers(AVLnode n) {
+    void addPointers(Node n) {
         if (n == null) {
             return;
         }
@@ -49,7 +50,7 @@ public class Library implements Serializable{
             int wartosc;
             while ((wartosc = st.nextToken()) != StreamTokenizer.TT_EOF) {
                 if (wartosc == StreamTokenizer.TT_WORD) {
-                    this.root.insert(root, st.sval,next_key++);
+                    tree.add(st.sval.trim(),next_key++);
                 }
             }
         } catch (IOException e) {
@@ -59,5 +60,7 @@ public class Library implements Serializable{
             fr.close();
         } catch (IOException e) {
         }
+        makePointers();
+        addPointers(tree.root);
     }
 }

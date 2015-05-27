@@ -6,6 +6,7 @@
 package generator;
 
 import java.util.*;
+import generator.AvlTree.Node;
 
 /**
  *
@@ -15,79 +16,83 @@ public class Generator {
 
     Library lib = new Library();
 
-    boolean have_key(AVLnode n, int key) {
-        for (int i : n.keys) {
-            if (n.keys.get(i) == key) {
+    boolean contains(ArrayList<Node> nodes) {
+        int s;
+        for (int j = 0; j < nodes.get(nodes.size() - 1).keys.size(); j++) {
+            s = 0;
+            int key = nodes.get(nodes.size() - 1).keys.get(j);
+            for (int k = 1, i = (nodes.size() - (1 + k)); i > 0; k++, i--) {
+                if (nodes.get(i).haveKey(key - k)) {
+                    s++;
+                }
+            }
+            if (s == nodes.size() - 1) {
                 return true;
             }
         }
         return false;
     }
 
-    boolean is_valid(ArrayList<AVLnode> t, int n, int key) {
-        int s = 0;
-        int i;
-        for (i = n - 2; i >= 0; i--) {
-            if (have_key(t.get(i), key + i - n + 1) == false) {
-                break;
-            } else {
-                s++;
+    ArrayList<Integer> goodKeys(ArrayList<Node> nodes) {
+        ArrayList<Integer> goodkeys = new ArrayList<>();
+        int s;
+        for (int j = 0; j < nodes.get(nodes.size() - 1).keys.size(); j++) {
+            s = 0;
+            int key = nodes.get(nodes.size() - 1).keys.get(j);
+            for (int k = 1, i = (nodes.size() - (1 + k)); i >= 0; k++, i--) {
+                if (nodes.get(i).haveKey(key - k)) {
+                    s++;
+                }
+            }
+            if (s == nodes.size() - 1) {
+                if(key+1<lib.next_key)
+                goodkeys.add(key + 1);
             }
         }
-        return s > 0;
+        return goodkeys;
     }
 
-    ArrayList<AVLnode> getNodes(ArrayList<String> tab) {
-        ArrayList<AVLnode> ret = new ArrayList<AVLnode>();
+    ArrayList<Node> getNodes(ArrayList<String> tab) {
+        ArrayList<Node> ret = new ArrayList<>();
         for (String a : tab) {
-            ret.add(lib.root.find(a));
+            ret.add(lib.tree.fromTree(a));
         }
+        ret.removeAll(Collections.singleton(null));
         if (ret.size() != tab.size()) {
             return null;
         }
-        int s = 0;
-        for (int i : ret.get(ret.size() - 1).keys) {
-            i++;
-            if (is_valid(ret, tab.size(), i)) {
-                return ret;
-            }
-        }
-        return null;
-
+        return ret;
     }
 
-    String wrd_gen(ArrayList<String> tab, int n_gram) {
+    String generate(ArrayList<String> tab, int wordsNum) {
         StringBuilder ret = new StringBuilder("K: ");
-        if (n_gram > (lib.next_key - 1)) {
-            ret.append("mniej słów niż stopień n-gramu \n");
+        if (tab.size() > (lib.next_key - 1)) {
+            ret.append("mniej słów niż stopień n-gramu, prawdopodobnie brak biblioteki \n");
             return ret.toString();
         }
-        int wrd = 0, first;
-        int tab_n = n_gram - 1;
-        int i = 0;
-        int e = 1;
-        ArrayList<Integer> good = new ArrayList<Integer>();
-        ArrayList<AVLnode> nodes;
+        int wrd = 0;
+        ArrayList<Integer> good;
+        ArrayList<Node> nodes;
         nodes = getNodes(tab);
         if (nodes == null) {
             ret.append("nie znaleziono łańcucha \n");
             return ret.toString();
         }
 
-        while (wrd < 15) {
-            for (i = 0; i < nodes.get(nodes.size() - 1).keys.size(); i++) {
-                if (is_valid(nodes, n_gram, nodes.get(nodes.size() - 1).keys.get(i))) {
-                    good.add(nodes.get(nodes.size() - 1).keys.get(i));
-                }
+        while (wrd < wordsNum) {
+            good=goodKeys(nodes);
+            if(good.size()==(int)0){
+                ret.append("error unable to generate next word probably last generated word was last in library");
+                return ret.toString();
             }
-            int lot = new Random().nextInt() % good.size();
-            ArrayList<AVLnode> nodes1 = new ArrayList<>();
-            for (i = 0; i < n_gram - 1; i++) {
+            Integer lot = new Random().nextInt(good.size());
+            ArrayList<Node> nodes1 = new ArrayList<>();
+            for (int i = 0; i < nodes.size()-1; i++) {
                 nodes1.add(nodes.get(i + 1));
             }
-            nodes1.add(lib.pointers[lot]);
+            nodes1.add(lib.pointers[good.get(lot)]);
             nodes = nodes1;
-            ret.append(nodes.get(nodes.size() - 1).var).append(" ");
+            ret.append(nodes.get(nodes.size() - 1).value).append(" ");
             wrd++;
         }
         return ret.toString();

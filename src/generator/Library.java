@@ -14,9 +14,9 @@ import java.io.*;
  */
 public class Library implements Serializable{
 
-    AVLnode root;
+    AVLnode root = new AVLnode();
     AVLnode[] pointers;
-    Integer next_key;
+    Integer next_key = 0;
 
     void makePointers() {
         pointers = new AVLnode[next_key];

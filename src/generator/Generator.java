@@ -13,7 +13,7 @@ import java.util.*;
  */
 public class Generator {
 
-    Library lib;
+    Library lib = new Library();
 
     boolean have_key(AVLnode n, int key) {
         for (int i : n.keys) {

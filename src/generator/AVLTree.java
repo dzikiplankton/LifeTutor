@@ -13,6 +13,10 @@ import java.util.*;
  * @author Dziki
  */
 class AVLnode implements Serializable{
+
+    public AVLnode() {
+    }
+    
     AVLnode left;
     AVLnode right;
     AVLnode parent;

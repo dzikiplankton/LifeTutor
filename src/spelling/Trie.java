@@ -5,17 +5,18 @@
  */
 package spelling;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Dziki
  */
-public class Trie {
+public class Trie implements Serializable{
 
     TrieNode root= new TrieNode();
 
-    public class TrieNode {
+    public class TrieNode implements Serializable{
 
         public TrieNode() {
         }

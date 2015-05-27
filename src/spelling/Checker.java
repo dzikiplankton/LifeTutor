@@ -11,7 +11,7 @@ import java.io.*;
  *
  * @author Dziki
  */
-public class Checker {
+public class Checker implements Serializable{
 
     Trie trie = new Trie();
     

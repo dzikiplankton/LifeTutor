@@ -9,11 +9,14 @@ import java.util.*;
 import generator.AvlTree.Node;
 
 /**
- *
+ * Class responsible for generating words.
  * @author Dziki
  */
 public class Generator {
-
+    
+    /**
+     * Library used in generation
+     */
     public Library lib = new Library();
 
     boolean contains(ArrayList<Node> nodes) {
@@ -63,7 +66,13 @@ public class Generator {
         }
         return ret;
     }
-
+    
+    /**
+     * Method generating words.
+     * @param tab String Array with text to start generation. N gram deegre depends of its size. 
+     * @param wordsNum how mutch word generate
+     * @return  Generated words or error information preceded by "K: "
+     */
     public String generate(ArrayList<String> tab, int wordsNum) {
         StringBuilder ret = new StringBuilder("K: ");
         if (tab.size() > (lib.next_key - 1)) {

@@ -3,21 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package spelling;
+package checker;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- *
+ * Class containing Trie container with words.
  * @author Dziki
  */
 public class Trie implements Serializable{
 
     TrieNode root= new TrieNode();
-
+    
+    /**
+     * Class describe trie node and operation on it. 
+     */
     public class TrieNode implements Serializable{
-
+        
         public TrieNode() {
         }
 

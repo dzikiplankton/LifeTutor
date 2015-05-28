@@ -3,10 +3,17 @@ package generator;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * AVLtree - data container (similar to tree but not allowing to node children height difference be bigger than two)
+ * @author Dziki
+ */
 public class AvlTree implements Serializable {
 
     Node root;
-
+    
+    /**
+     * Node of AVL tree 
+     */
     public class Node implements Serializable{
 
         /**
@@ -20,11 +27,6 @@ public class AvlTree implements Serializable {
 
         private int balance, height = 1;
 
-        /**
-         * Creates a new node.
-         *
-         * @param val The value.
-         */
         private Node(String val, int key) {
             this.value = val;
             this.keys = new ArrayList<>();

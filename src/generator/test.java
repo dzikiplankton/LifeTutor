@@ -7,7 +7,7 @@ package generator;
 import java.io.IOException;
 import java.util.*;
 /**
- *
+ *  Class with simple test for package generator.
  * @author Dziki
  */
 public class test {

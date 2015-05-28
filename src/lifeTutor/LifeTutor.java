@@ -5,16 +5,17 @@
  */
 package lifeTutor;
 
+import checker.SerChe;
+import checker.Checker;
 import generator.*;
 import java.io.IOException;
-import spelling.*;
 import statistic.*;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *
+ *  Main class in program generates gui and allow user requested operations .
  * @author Dziki
  */
 public class LifeTutor extends javax.swing.JFrame {

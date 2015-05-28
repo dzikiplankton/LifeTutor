@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package spelling;
+package checker;
 
 import java.io.*;
 import java.util.regex.Matcher;
@@ -16,11 +16,22 @@ import java.util.regex.Pattern;
 public class Checker implements Serializable {
 
     Trie trie = new Trie();
-
+    
+    /**
+     * Method checking the word in dictionary.
+     * @param word -word to check.
+     * @return true - dic includes word or false - not 
+     */
     public boolean includes(char[] word) {
         return trie.inclueds(word);
     }
-
+    
+    /**
+     * Method creating text base from file for dictionary.
+     * @param path - file name
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public void read(String path) throws FileNotFoundException, IOException {
 
         BufferedReader br;

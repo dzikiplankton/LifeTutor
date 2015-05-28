@@ -6,19 +6,22 @@
 package generator;
 
 import generator.AvlTree.Node;
-import java.util.*;
 import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *
+ * Class describing words library with their connections
  * @author Dziki
  */
 public class Library implements Serializable {
 
     AvlTree tree = new AvlTree();
     Node[] pointers;
+    
+    /**
+     * Number of words in library.
+     */
     public Integer next_key = 0;
 
     void makePointers() {
@@ -36,7 +39,13 @@ public class Library implements Serializable {
         addPointers(n.left);
         addPointers(n.right);
     }
-
+    
+    /**
+     * Method creating library from txt file
+     * @param path file path/name
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public void read(String path) throws FileNotFoundException, IOException {
 
         BufferedReader br;

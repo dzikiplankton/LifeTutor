@@ -13,11 +13,18 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- *
+ *  Class extending @see Library to allow data serialization.
  * @author Dziki
  */
 public class SerLib extends Generator {
     
+    /**
+     * Method saving data.
+     * @param lib Library object to save
+     * @param fileName - path to file
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public static void serializeLib(Library lib,String fileName) throws FileNotFoundException, IOException {
         FileOutputStream fileOut;
 
@@ -29,7 +36,15 @@ public class SerLib extends Generator {
         out.writeObject(lib);
         
     }
-    
+       
+    /**
+     * Method restoring data.
+     * @param fileName - path to file
+     * @return restored object.
+     * @throws FileNotFoundException
+     * @throws java.lang.ClassNotFoundException
+     * @throws IOException 
+     */
     public static Library deserialize(String fileName) throws IOException, ClassNotFoundException {
         Library lib;
         FileInputStream fis = new FileInputStream(fileName);

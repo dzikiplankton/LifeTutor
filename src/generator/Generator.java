@@ -82,7 +82,7 @@ public class Generator {
         while (wrd < wordsNum) {
             good=goodKeys(nodes);
             if(good.size()==(int)0){
-                ret.append("error unable to generate next word probably last generated word was last in library \n");
+                ret.append("unable to find next word\n");
                 return ret.toString();
             }
             Integer lot = new Random().nextInt(good.size());

@@ -1,4 +1,4 @@
-The Project Gutenberg EBook of The Untroubled Mind, by Herbert J. Hall
+are ares The Project Gutenberg EBook of The Untroubled Mind, by Herbert J. Hall
 
 This eBook is for the use of anyone anywhere at no cost and with
 almost no restrictions whatsoever.  You may copy it, give it away or
@@ -1769,6 +1769,8 @@ that
      sent to the Project Gutenberg Literary Archive Foundation at the
      address specified in Section 4, "Information about donations to
      the Project Gutenberg Literary Archive Foundation."
+
+ZUZIA
 
 - You provide a full refund of any money paid by a user who notifies
      you in writing (or by e-mail) within 30 days of receipt that s/he

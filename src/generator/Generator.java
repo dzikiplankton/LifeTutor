@@ -14,7 +14,7 @@ import generator.AvlTree.Node;
  */
 public class Generator {
 
-    Library lib = new Library();
+    public Library lib = new Library();
 
     boolean contains(ArrayList<Node> nodes) {
         int s;
@@ -64,10 +64,10 @@ public class Generator {
         return ret;
     }
 
-    String generate(ArrayList<String> tab, int wordsNum) {
+    public String generate(ArrayList<String> tab, int wordsNum) {
         StringBuilder ret = new StringBuilder("K: ");
         if (tab.size() > (lib.next_key - 1)) {
-            ret.append("mniej słów niż stopień n-gramu, prawdopodobnie brak biblioteki \n");
+            ret.append("n-gram deegre bigger than words number in library \n");
             return ret.toString();
         }
         int wrd = 0;
@@ -75,14 +75,14 @@ public class Generator {
         ArrayList<Node> nodes;
         nodes = getNodes(tab);
         if (nodes == null) {
-            ret.append("nie znaleziono łańcucha \n");
+            ret.append("no matches found \n");
             return ret.toString();
         }
 
         while (wrd < wordsNum) {
             good=goodKeys(nodes);
             if(good.size()==(int)0){
-                ret.append("error unable to generate next word probably last generated word was last in library");
+                ret.append("error unable to generate next word probably last generated word was last in library \n");
                 return ret.toString();
             }
             Integer lot = new Random().nextInt(good.size());
@@ -95,6 +95,7 @@ public class Generator {
             ret.append(nodes.get(nodes.size() - 1).value).append(" ");
             wrd++;
         }
+        ret.append("\n");
         return ret.toString();
     }
 

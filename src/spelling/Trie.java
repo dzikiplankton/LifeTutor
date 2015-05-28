@@ -56,6 +56,9 @@ public class Trie implements Serializable{
                     current.isEnd = true;
                 }
             }
+            else{
+                current=exist;
+            }
         }
     }
     

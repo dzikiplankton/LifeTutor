@@ -26,9 +26,9 @@ public class SerChe extends Checker{
     public static Checker deserializeCheck(String fileName) throws IOException, ClassNotFoundException {
         Checker ch;
         FileInputStream fis = new FileInputStream(fileName);
-        try (ObjectInputStream ois = new ObjectInputStream(fis)) {
+        ObjectInputStream ois = new ObjectInputStream(fis);
             ch = (Checker) ois.readObject();
-        }
+        
 
         return ch;
     }

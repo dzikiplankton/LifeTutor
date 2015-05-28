@@ -8,16 +8,18 @@ package generator;
 import generator.AvlTree.Node;
 import java.util.*;
 import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
  * @author Dziki
  */
-public class Library implements Serializable{
+public class Library implements Serializable {
 
-    AvlTree tree =new AvlTree();
+    AvlTree tree = new AvlTree();
     Node[] pointers;
-    Integer next_key = 0;
+    public Integer next_key = 0;
 
     void makePointers() {
         pointers = new Node[next_key];
@@ -35,32 +37,29 @@ public class Library implements Serializable{
         addPointers(n.right);
     }
 
-    void read(String path) {
-        FileReader fr;
+    public void read(String path) throws FileNotFoundException, IOException {
 
-        try {
-            fr = new FileReader(path);
-        } catch (FileNotFoundException e) {
-            return;
-        }
+        BufferedReader br;
+        br = new BufferedReader(new FileReader(path));
+        String line = br.readLine();
 
-        StreamTokenizer st = new StreamTokenizer(fr);
-
-        try {
-            int wartosc;
-            while ((wartosc = st.nextToken()) != StreamTokenizer.TT_EOF) {
-                if (wartosc == StreamTokenizer.TT_WORD) {
-                    tree.add(st.sval.trim(),next_key++);
-                }
+        while (line != null) {
+            Pattern pattern = Pattern.compile("\\w+");
+            Matcher matcher = pattern.matcher(line);
+            while (matcher.find()) {
+                this.tree.add(matcher.group(),next_key++);
             }
-        } catch (IOException e) {
-        }
+            try {
+                line = br.readLine();
+            } catch (Exception e) {
+            }
 
-        try {
-            fr.close();
-        } catch (IOException e) {
         }
+        br.close();
         makePointers();
+
         addPointers(tree.root);
     }
+
+    
 }

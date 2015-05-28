@@ -14,15 +14,13 @@ import java.io.IOException;
 public class test {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Checker sp = new Checker();
-        sp.read("rozbitki.txt");
-        SerChe.serializeCheck(sp, "abba");
-        Checker ns = SerChe.deserializeCheck("abba");
+        sp.read("psychology.txt");
         String a,b;
-        a = "Rozbitki";
-        b = "sdfjkhsdfgksdjfghsd";
-        boolean n =ns.includes(a.toCharArray());
-        boolean f =ns.includes(b.toCharArray());
+        a = "are";
+        b = "ZUZIA";
+        boolean n =sp.includes(a.toCharArray());
+        boolean f =sp.includes(b.toCharArray());
+
     }
-    
-    
+      
 }

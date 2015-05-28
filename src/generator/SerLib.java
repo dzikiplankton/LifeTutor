@@ -33,9 +33,9 @@ public class SerLib extends Generator {
     public static Library deserialize(String fileName) throws IOException, ClassNotFoundException {
         Library lib;
         FileInputStream fis = new FileInputStream(fileName);
-        try (ObjectInputStream ois = new ObjectInputStream(fis)) {
+        ObjectInputStream ois = new ObjectInputStream(fis);
             lib = (Library) ois.readObject();
-        }
+        
 
         return lib;
     }
